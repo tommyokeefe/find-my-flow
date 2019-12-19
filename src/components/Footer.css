@@ -1,0 +1,9 @@
+.footer {
+    background-color: #000000;
+    height: 50px;
+    margin-top: -50px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}

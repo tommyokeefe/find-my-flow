@@ -1,0 +1,12 @@
+.header {
+    background-color: #000000;
+    height: 80px;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.header h1 {
+    color: #ffffff;
+    text-align: center;
+}
