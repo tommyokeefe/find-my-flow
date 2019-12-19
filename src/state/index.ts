@@ -24,3 +24,19 @@ export interface AppState {
     dayIsReady: boolean;
     dayIsComplete: boolean;
 }
+
+export interface Meeting {
+    title: string;
+    scheduled: boolean;
+    length?: string;
+}
+
+export interface ScheduledMeeting extends Meeting {
+    startTime: string;
+    endTime: string;
+}
+
+export interface Task {
+    title: string;
+    estimatedTime: string;
+}
