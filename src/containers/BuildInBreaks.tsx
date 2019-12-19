@@ -2,36 +2,52 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { AppState } from '../state';
-import { toggleBuildInBreaks } from '../state/actions';
+import { toggleBuildInBreaks, incrementDayPrepCurrentIndex } from '../state/actions';
 
-const mapStateToProps = (state: AppState) => ({ flowTime: state.minimumFlowTime, breaks: state.buildInBreaks });
+const mapStateToProps = (state: AppState) => ({ breaks: state.buildInBreaks });
 
 const mapDispatchToProps = (dispatch: CallableFunction) => ({
-    onClickBreaks: (breaks: boolean) => dispatch(toggleBuildInBreaks(breaks)),
+    onClickBreaks: (breaks: boolean, increment: number) => {
+        dispatch(toggleBuildInBreaks(breaks));
+        dispatch(incrementDayPrepCurrentIndex(increment));
+    },
 });
 
 interface BuildInBreaksProps {
-    flowTime?: string;
     breaks?: boolean;
     onClickBreaks: any;
 }
 
-const BuildInBreaks = ({ flowTime, breaks, onClickBreaks }: BuildInBreaksProps) => {
-    if (!flowTime || breaks !== undefined) {
-        return <div/>;
-    }
+const BuildInBreaks = ({ breaks, onClickBreaks }: BuildInBreaksProps) => {
 
-    let input: any;
+    let yesInput: any;
+    let noInput: any;
+
+    let yesChecked = (breaks !== undefined && breaks === true);
+    let noChecked = (breaks !== undefined && breaks === false);
 
     const onSubmitHandler = (e: any) => {
-        console.log(e);
-      }
+        console.log(yesInput.checked);
+        console.log(noInput.checked);
+        let choice: boolean | undefined;
+        let increment = 3
+        if (yesInput.checked) {
+            choice = true;
+            increment = 1;
+        }
+
+        if (noInput.checked) {
+            choice = false;
+        }
+
+        onClickBreaks(choice, increment);
+    }
 
     return (
         <form>
             Do you want breaks built in to your schedule?
-            <input type="radio" name="breaks" value="true" onClick={onSubmitHandler} /> Yes<br/>
-            <input type="radio" name="breaks" value="false" onClick={onSubmitHandler} /> No<br/>
+            <input type="radio" name="breaks" value="true" defaultChecked={yesChecked} onClick={onSubmitHandler} ref={node => { yesInput = node; }} /> Yes<br/>
+            <input type="radio" name="breaks" value="false" defaultChecked={noChecked} onClick={onSubmitHandler} ref={node => { noInput = node; }} /> No<br/>
         </form>
     )
 };

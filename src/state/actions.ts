@@ -110,8 +110,9 @@ export const addShallowWorkTask = (task: any): Action => ({
     task,
 });
 
-export const incrementDayPrepCurrentIndex = (): Action => ({
+export const incrementDayPrepCurrentIndex = (increment: number): Action => ({
     type: INCREMENT_DAY_PREP_CURRENT_INDEX,
+    increment,
 });
 
 export const toggleFlowTimeAvailable = (flowTime: boolean): Action => ({

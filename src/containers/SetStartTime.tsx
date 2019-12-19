@@ -2,25 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { AppState } from '../state';
-import { setDayStartTime } from '../state/actions';
+import { incrementDayPrepCurrentIndex, setDayStartTime } from '../state/actions';
 
-const mapStateToProps = (state: AppState) => ({ date: state.date, startTime: state.dayStartTime });
+const mapStateToProps = (state: AppState) => ({ startTime: state.dayStartTime });
 
 const mapDispatchToProps = (dispatch: CallableFunction) => ({
-    onClickStartTime: (startTime: string) => dispatch(setDayStartTime(startTime)),
+    onClickStartTime: (startTime: string) => {
+        dispatch(setDayStartTime(startTime));
+        dispatch(incrementDayPrepCurrentIndex(1));
+    },
 });
 
 interface SetStartTimeProps {
-    date?: string;
     startTime?: string;
     onClickStartTime: any,
 }
 
-const SetStartTime = ({ date, startTime, onClickStartTime }: SetStartTimeProps) => {
-    if (!date || startTime) {
-        return <div/>;
-    }
-
+const SetStartTime = ({ startTime, onClickStartTime }: SetStartTimeProps) => {
     let input: any;
 
     const onSubmitHandler = (e: any) => {
@@ -35,7 +33,7 @@ const SetStartTime = ({ date, startTime, onClickStartTime }: SetStartTimeProps) 
     return (
         <form onSubmit={onSubmitHandler}>
             What time does your day start? (use format h:mm)<br/>
-            <input placeholder="8:00" ref={node => { input = node; }} />
+            <input placeholder="8:00" defaultValue={startTime} ref={node => { input = node; }} />
             <button type="submit">Submit</button>
       </form>
     )

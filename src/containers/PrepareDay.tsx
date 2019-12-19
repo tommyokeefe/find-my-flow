@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import SetStartTime from './SetStartTime';
-import SetDayLength from './SetDayLength';
-import SetMinimumFlowTime from './SetMinimumFLowTime';
-import BuildInBreaks from './BuildInBreaks';
+import { orderedDayPrepContainers } from './dayPrepContainers';
 
 import { AppState } from '../state';
 import { setDate } from '../state/actions';
 
-const mapStateToProps = (state: AppState) => ({ date: state.date, dayIsReady: state.dayIsReady });
+const mapStateToProps = (state: AppState) => ({ date: state.date, dayIsReady: state.dayIsReady, dayPrepComponentIndex: state.dayPrepCurrentIndex });
 
 const mapDispatchToProps = (dispatch: CallableFunction) => {
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -23,9 +20,10 @@ interface PrepareDayProps {
     date?: string;
     dayIsReady: boolean;
     dispatchDate: any;
+    dayPrepComponentIndex: number;
 }
 
-const PrepareDay = ({ date, dayIsReady, dispatchDate }: PrepareDayProps) => {
+const PrepareDay = ({ date, dayIsReady, dispatchDate, dayPrepComponentIndex }: PrepareDayProps) => {
     if(!date) {
         dispatchDate();
     }
@@ -34,13 +32,12 @@ const PrepareDay = ({ date, dayIsReady, dispatchDate }: PrepareDayProps) => {
         return <div />;
     }
 
+    let DayPrepComponent = orderedDayPrepContainers[dayPrepComponentIndex];
+
     return (
         <div>
             <p>{date}</p>
-            <SetStartTime />
-            <SetDayLength />
-            <SetMinimumFlowTime />
-            <BuildInBreaks />
+            <DayPrepComponent />
         </div>
     );
 };

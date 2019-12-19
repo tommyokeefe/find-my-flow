@@ -1,4 +1,4 @@
-import { Action, actions, incrementDayPrepCurrentIndex } from './actions';
+import { Action, actions } from './actions';
 
 import { AppState } from './index';
 
@@ -75,7 +75,7 @@ export function arrangeMyDay(state = initialState, action: Action): AppState {
             return { ...state, shallowWork };
 
         case actions.INCREMENT_DAY_PREP_CURRENT_INDEX:
-            return { ...state, dayPrepCurrentIndex: state.dayPrepCurrentIndex + 1 };
+            return { ...state, dayPrepCurrentIndex: state.dayPrepCurrentIndex + action.increment };
 
         case actions.TOGGLE_FLOW_TIME_AVAILABLE:
             return { ...state, flowTimeAvailable: action.flowTime };
