@@ -8,10 +8,10 @@ export interface AppState {
     longBreakLength: string;
     lunch: boolean;
     lunchLength?: string;
-    meetings: any[];
-    unscheduledMeetings: any[];
-    nonWorkAppointments: any[];
-    shallowWork: any[];
+    meetings: Meeting[];
+    unscheduledMeetings: Meeting[];
+    nonWorkAppointments: Meeting[];
+    shallowWork: Task[];
     dayPrepCurrentIndex: number,
     flowTimeAvailable: boolean;
     dayWentAccordingToPlan: boolean;

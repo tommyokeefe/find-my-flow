@@ -6,7 +6,7 @@ interface meetingProps {
     key: string,
 }
 
-const Meeting = ({ meeting }: meetingProps) => {
+const MeetingComponent = ({ meeting }: meetingProps) => {
     return (
         <div>
             <h3>{meeting.title}</h3>
@@ -20,4 +20,4 @@ const Meeting = ({ meeting }: meetingProps) => {
     );
 };
 
-export default Meeting;
+export default MeetingComponent;

@@ -8,6 +8,7 @@ import SetLunchLength from './SetLunchLength';
 import AddScheduledMeetings from './AddScheduledMeetings';
 import AddUnscheduledMeetings from './AddUnscheduledMeetings';
 import AddNonWorkMeetings from './AddNonWorkMeetings';
+import AddWorkTasks from './AddWorkTasks';
 
 export const orderedDayPrepContainers = [
     SetStartTime,
@@ -19,4 +20,6 @@ export const orderedDayPrepContainers = [
     SetLunchLength,
     AddScheduledMeetings,
     AddUnscheduledMeetings,
+    AddNonWorkMeetings,
+    AddWorkTasks,
 ];
