@@ -5,7 +5,9 @@ import BuildInBreaks from './BuildInBreaks';
 import SetShortBreakLength from './SetShortBreakLength';
 import SetLongBreakLength from './SetLongBreakLength';
 import SetLunchLength from './SetLunchLength';
-import AddMeetings from './AddMeetings';
+import AddScheduledMeetings from './AddScheduledMeetings';
+import AddUnscheduledMeetings from './AddUnscheduledMeetings';
+import AddNonWorkMeetings from './AddNonWorkMeetings';
 
 export const orderedDayPrepContainers = [
     SetStartTime,
@@ -15,5 +17,6 @@ export const orderedDayPrepContainers = [
     SetShortBreakLength,
     SetLongBreakLength,
     SetLunchLength,
-    AddMeetings,
+    AddScheduledMeetings,
+    AddUnscheduledMeetings,
 ];

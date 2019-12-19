@@ -1,8 +1,8 @@
 import React from 'react';
-import { ScheduledMeeting } from '../state';
+import { Meeting } from '../state';
 
 interface meetingProps {
-    meeting: ScheduledMeeting;
+    meeting: Meeting;
     key: string,
 }
 
@@ -10,7 +10,12 @@ const Meeting = ({ meeting }: meetingProps) => {
     return (
         <div>
             <h3>{meeting.title}</h3>
-            <p>{meeting.startTime} -> {meeting.endTime}</p>
+            {meeting.startTime &&
+                <p>{meeting.startTime} -> {meeting.endTime}</p>
+            }
+            {meeting.length &&
+                <p>{meeting.length} minutes long</p>
+            }
         </div>
     );
 };

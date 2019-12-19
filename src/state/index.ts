@@ -28,12 +28,10 @@ export interface AppState {
 export interface Meeting {
     title: string;
     scheduled: boolean;
+    work: boolean;
     length?: string;
-}
-
-export interface ScheduledMeeting extends Meeting {
-    startTime: string;
-    endTime: string;
+    startTime?: string;
+    endTime?: string;
 }
 
 export interface Task {

@@ -1,33 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { AppState, ScheduledMeeting } from '../state';
-import { incrementDayPrepCurrentIndex, addMeeting } from '../state/actions';
+import { AppState, Meeting } from '../state';
+import { incrementDayPrepCurrentIndex, addNonWorkAppointment } from '../state/actions';
 import Meetings from '../components/Meetings';
 
-const mapStateToProps = (state: AppState) => ({ meetings: state.meetings });
+const mapStateToProps = (state: AppState) => ({ meetings: state.nonWorkAppointments });
 
 const mapDispatchToProps = (dispatch: CallableFunction) => ({
-    onClickAddMeeting: (meeting: ScheduledMeeting) => dispatch(addMeeting(meeting)),
+    onClickAddMeeting: (meeting: Meeting) => dispatch(addNonWorkAppointment(meeting)),
     onClickFinishedAddingMeetings: () => dispatch(incrementDayPrepCurrentIndex(1)),
 });
 
-interface AddMeetingsProps {
-    meetings: ScheduledMeeting[],
+interface AddNonWorkMeetingsProps {
+    meetings: Meeting[],
     onClickAddMeeting: any,
     onClickFinishedAddingMeetings: any,
 }
 
-const AddMeetings = ({ meetings, onClickAddMeeting, onClickFinishedAddingMeetings }: AddMeetingsProps) => {
+const AddNonWorkMeetings = ({ meetings, onClickAddMeeting, onClickFinishedAddingMeetings }: AddNonWorkMeetingsProps) => {
     let title: any;
     let startTime: any;
     let endTime: any;
 
     const onClickSubmit = (e: any) => {
         e.preventDefault();
-        const meeting: ScheduledMeeting = {
+        const meeting: Meeting = {
             title: title.value,
             scheduled: true,
+            work: false,
             startTime: startTime.value,
             endTime: endTime.value,
         };
@@ -41,10 +42,10 @@ const AddMeetings = ({ meetings, onClickAddMeeting, onClickFinishedAddingMeeting
         <div>
             <Meetings meetings={meetings} />
             <div>
-                <h2>Add Meetings:</h2>
+                <h2>Add Meetings/Appointments:</h2>
                 <form onSubmit={onClickSubmit}>
                     Title:<br />
-                    <input placeholder="Another meeting" ref={node => { title = node; }} /><br />
+                    <input placeholder="Appointment" ref={node => { title = node; }} /><br />
                     Start Time (format H:MM AM/PM):<br />
                     <input placeholder="11:00 AM" ref={node => { startTime = node; }} /><br />
                     End Time (format H:MM AM/PM):<br />
@@ -57,9 +58,9 @@ const AddMeetings = ({ meetings, onClickAddMeeting, onClickFinishedAddingMeeting
     );
 };
 
-const AddMeetingsContainer = connect(
+const AddNonWorkMeetingsContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(AddMeetings);
+)(AddNonWorkMeetings);
 
-export default AddMeetingsContainer;
+export default AddNonWorkMeetingsContainer;

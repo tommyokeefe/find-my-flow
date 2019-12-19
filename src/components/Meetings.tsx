@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { ScheduledMeeting } from '../state';
-import Meeting from './Meeting';
+import { Meeting } from '../state';
+import MeetingComponent from './Meeting';
 
 interface MeetingsProps {
-    meetings: ScheduledMeeting[];
+    meetings: Meeting[];
 }
 const Meetings = ({ meetings }: MeetingsProps) => {
     return (
         <div>
             <h2>Meetings:</h2>
             {meetings.map(meeting =>
-                <Meeting key={meeting.title} meeting={meeting} />
+                <MeetingComponent key={meeting.title} meeting={meeting} />
             )}
 
         </div>
