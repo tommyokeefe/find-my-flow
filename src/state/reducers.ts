@@ -1,4 +1,4 @@
-import { Action, actions } from './actions';
+import { Action, actions, incrementDayPrepCurrentIndex } from './actions';
 
 import { AppState } from './index';
 
@@ -14,6 +14,7 @@ const initialState: AppState = {
     unscheduledMeetings: [],
     nonWorkAppointments: [],
     shallowWork: [],
+    dayPrepCurrentIndex: 0,
     flowTimeAvailable: false,
     dayWentAccordingToPlan: true,
     dayHadInterruptions: false,
@@ -72,6 +73,9 @@ export function arrangeMyDay(state = initialState, action: Action): AppState {
             const shallowWork = [ ...state.shallowWork ];
             shallowWork.push(action.task);
             return { ...state, shallowWork };
+
+        case actions.INCREMENT_DAY_PREP_CURRENT_INDEX:
+            return { ...state, dayPrepCurrentIndex: state.dayPrepCurrentIndex + 1 };
 
         case actions.TOGGLE_FLOW_TIME_AVAILABLE:
             return { ...state, flowTimeAvailable: action.flowTime };

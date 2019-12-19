@@ -15,6 +15,7 @@ export const ADD_MEETING = 'ADD_MEETING';
 export const ADD_UNSCHEDULED_MEETING = 'ADD_UNSCHEDULED_MEETING';
 export const ADD_NON_WORK_APPOINTMENT = 'ADD_NON_WORK_APPOINTMENT';
 export const ADD_SHALLOW_WORK_TASK = 'ADD_SHALLOW_WORK_TASK';
+export const INCREMENT_DAY_PREP_CURRENT_INDEX = 'INCREMENT_DAY_PREP_CURRENT_INDEX';
 export const TOGGLE_FLOW_TIME_AVAILABLE = 'TOGGLE_FLOW_TIME_AVAILABLE';
 export const TOGGLE_DAY_WENT_ACCORDING_TO_PLAN = 'TOGGLE_DAY_WENT_ACCORDING_TO_PLAN';
 export const SET_TIME_SPENT_ON_INTERRUPTIONS = 'SET_TIME_SPENT_ON_INTERRUPTIONS';
@@ -37,6 +38,7 @@ export const actions = {
     ADD_UNSCHEDULED_MEETING,
     ADD_NON_WORK_APPOINTMENT,
     ADD_SHALLOW_WORK_TASK,
+    INCREMENT_DAY_PREP_CURRENT_INDEX,
     TOGGLE_FLOW_TIME_AVAILABLE,
     TOGGLE_DAY_WENT_ACCORDING_TO_PLAN,
     SET_TIME_SPENT_ON_INTERRUPTIONS,
@@ -106,6 +108,10 @@ export const addNonWorkAppointment = (meeting: any): Action => ({
 export const addShallowWorkTask = (task: any): Action => ({
     type: ADD_SHALLOW_WORK_TASK,
     task,
+});
+
+export const incrementDayPrepCurrentIndex = (): Action => ({
+    type: INCREMENT_DAY_PREP_CURRENT_INDEX,
 });
 
 export const toggleFlowTimeAvailable = (flowTime: boolean): Action => ({

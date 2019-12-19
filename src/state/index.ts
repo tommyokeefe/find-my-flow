@@ -12,6 +12,7 @@ export interface AppState {
     unscheduledMeetings: any[];
     nonWorkAppointments: any[];
     shallowWork: any[];
+    dayPrepCurrentIndex: number,
     flowTimeAvailable: boolean;
     dayWentAccordingToPlan: boolean;
     dayHadInterruptions: boolean;
